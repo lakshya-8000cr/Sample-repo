@@ -13,7 +13,6 @@ int main(){
         for(int m=1; m<=2*i-1; m++){
             cout<<"*";
         }
-
         cout<<endl;
     }
 }
