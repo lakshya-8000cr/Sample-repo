@@ -3,19 +3,20 @@
 using namespace std ;
 
 class Car {
-
     public :
-    
     string brand ;
     string model ;
     int year ;
     int price ;
+
+    Car(int year,int price){
+        this->year =year ;
+        this->price = price ;
+    }
   
-    void Details(string brand , string model , int year , int price ){
+    void Details(string brand , string model ){
         this ->brand = brand ;
         this ->model = model ;
-        this ->year = year ;
-        this ->price = price ;
     }
 
     void Print(){
@@ -24,6 +25,8 @@ class Car {
         cout<<"year in whihc car come: "<<year<<endl;
         cout<<"Price of the car: "<<price<<endl;
     }
+
+    ~Car(){};
 
 };
 
@@ -38,10 +41,10 @@ int main(){
     cin>>year ;
     cin>> price ;
 
-    Car B;
+    Car B(year,price);
 
-    B.Details(brand , model, year , price);
+    B.Details(brand , model);
     B.Print();
-    
+
     return 0;
 }
