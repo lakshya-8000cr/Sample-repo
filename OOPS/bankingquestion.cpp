@@ -1,51 +1,67 @@
-// Use private members and public methods to implement encapsulation in a BankAccount class.
-
 #include<iostream>
 using namespace std ;
 
-class Bank{
-    private:
-    int Balance ;
+class Account {
+    private :
+    int* Balance ;
 
-    public :
-    int withdraw ;
-    int deposit ;
-    int new_balance ;
+    public: 
 
+    int new_balance;
 
-    Bank(int Balance){
-        this->Balance = Balance ;
-        new_balance = Balance ;
+    Account(int balance ){
+       Balance = new int(balance);
+       new_balance = *Balance ;
+       cout << "current balance: " << new_balance << endl;
     }
 
-    void All(int withdraw, int deposit){
-        if(withdraw<0){
-            cout<<"Not eligible withdraw"<<endl;
-        }
-        else{
-            new_balance = Balance - withdraw ;
-        }
+    void All(char type , int amount){
 
-        if(deposit<0){
-            cout<<"Invalid Deposit:";
-        }else{
-            new_balance += deposit ;
-        }
+         if(type == 'D'){
+            if(amount<=0){
+                cout<<"Deposit should be positive: current balance: "<<new_balance << endl; 
+            }else{
+                new_balance += amount;
+                cout<<"Deposit Successfull. current balance: "<< new_balance <<endl;
+            }
+         }
+
+         if(type == 'W'){
+            if(amount>new_balance){
+                cout<<"Not enough Funds. current balance: "<<new_balance << endl;
+            }else{
+                new_balance -= amount;
+                cout<<"Withdraw Successfull. current balance: "<<new_balance<<endl;
+            }
+         }
+    }
+
+    ~Account(){
+        delete Balance ;
     }
 
 };
 
 int main(){
-     int balance;
-     cin>>balance;
-     int deposit ;
-     cin>>deposit ;
-     int withdraw ;
-     cin>>withdraw;
 
-     Bank B(balance);
-     B.All(withdraw,deposit);
+    int balance ;
+    cin >> balance;
 
+
+    Account A(balance);
     
-     
+    while(true){
+        int amount;
+        char type;
+        
+        cin >> type; 
+        if(type=='E'){
+           cout<<"Exit the loop";
+            break;
+        }
+        cin >> amount ;
+
+        A.All(type , amount);
+    }
+
 }
