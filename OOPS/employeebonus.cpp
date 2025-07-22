@@ -1,64 +1,76 @@
 #include<iostream>
-using namespace std ;
+#include<iomanip>
+using namespace std;
 
 class Sol {
-    private:
-    double salary ;
+private:
+    double salary;
 
-    public :
-
+public:
     int id;
     string name;
-    int exp ;
-    double bonus ;
+    int exp;
+    double bonus;
 
-    Sol(double salary){
-        this->salary = salary; //  this is a defiend constructor ;
+
+    Sol(double salary) {
+        this->salary = salary; // this is a constrictor ;
     }
 
-    void Detail(int id, string name, int exp){
+
+    void Detail(int id, string name, int exp) {
         this->id = id;
         this->name = name;
-        this->exp = exp ;
+        this->exp = exp;
     }
 
-     void Print(){
 
-        if(exp<2){
+void Print() {
+    cout << "Name: " << name << endl;
+    cout << "ID: " << id << endl;
+    cout << "Salary: " << salary << endl;
+    cout << "Experience: " << exp << " years" << endl;
 
-           bonus = 0.5 * salary + salary ;
-           cout<<"Name: "<<name;
-           cout<<"ID: "<<id;
-           cout<<"Salary: "<<salary;
-           cout<<"Experiecne: "<<exp;
-           cout<<"Bonus According to sal: "<<bonus;
-           return 0;
-
-        }else if(exp>=2 && exp<=5){
-
-            bonus = 1.5 * salary + salary; 
-
-            return 0;
-
-        }else{
-
-            cout<<"invalid";
-
-        }
+    if (exp < 2) {
+        bonus = 0.10 * salary;
+    } else if (exp >= 2 && exp <= 5) {
+        bonus = 0.15 * salary;
+    } else if (exp > 5) {
+        bonus = 0.20 * salary;
+    } else {
+        bonus = 0;
+        cout << "Invalid experience.\n";
     }
+
+    double total = salary + bonus;
+    cout << "Bonus Amount: $" << fixed << setprecision(2) << bonus << endl; // setprecision is for the decimal values , like if you dont want to go the decimal beyond the 2 decimal palces 
+    cout << "Total Salary: $" << fixed << setprecision(2) << total << endl;
+}
+
+
+    ~Sol(){};
 };
 
-int main(){
-    string name ;
-    getline(cin,name);
-    double salary;
-    cin>>salary;
-    int id;
-    cin>>id;
-    int exp;
-    cin>>exp;
+int main() {
+    string name;
+    cout << "Enter Name: ";
+    getline(cin, name);
 
-    Sol obj(salary) ;
-    obj.Detail(id , name , exp);
+    double salary;
+    cout << "Enter Salary: ";
+    cin >> salary;
+
+    int id;
+    cout << "Enter ID: ";
+    cin >> id;
+
+    int exp;
+    cout << "Enter Experience (in years): ";
+    cin >> exp;
+
+    Sol obj(salary);
+    obj.Detail(id, name, exp);
     obj.Print();
+
+    return 0;
 }
