@@ -3,7 +3,7 @@ using namespace std;
 
 #define PI_MACRO 3.14159 // used for defined macros 
 
-const double PI_CONST = 3.14159; // used for PI constant 
+const double PI_CONST = 3.14159; // used for PI constant
 
 constexpr double PI_CONSTEXPR = 3.14159;
 
